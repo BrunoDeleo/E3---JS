@@ -1,0 +1,60 @@
+@font-face{
+    font-family: 'Archivo';
+    src: url("fonts/Archivo/Archivo-Regular.ttf");
+}
+body{
+    background-image: linear-gradient(#6f86d6, #002363);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: left top;
+}
+
+html{
+    height:100%;
+}
+
+.cont-todo{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-around;
+    margin: 30px;
+    color: #e2ebf0;
+    font-family: 'Archivo', sans-serif;
+}
+
+#cards-container{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    align-items: center;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    border-radius: 25px;
+    color:  rgb(41, 39, 73);
+    margin: 25px;
+}
+
+#cards-container img{
+    height: 200px;
+}
+
+
+#btn{
+    background-color: rgb(26, 106, 224);
+    color:  antiquewhite;
+    margin: 25px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+h1 {
+    color:  rgb(26, 106, 224);
+}
+
+h2{
+    font-size: 0.5 rem;
+}
