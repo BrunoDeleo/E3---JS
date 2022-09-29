@@ -1,3 +1,9 @@
+// link a Vercel https://e3-js-one.vercel.app/
+// no llegué a terminarlo, estoy teniendo problemas en la parte de acceder a los datos del array para renderizar la card
+
+
+
+
 const input = document.getElementById ("input");
 const btn = document.getElementById ("btn");
 const cardsContainer = document.getElementById ("cards-container");
@@ -43,8 +49,8 @@ const renderPizza = (pizza) => {
 //     cardsContainer.innerHTML = renderPizza;
 // }
 
-// const match = Pizzas.find((e) => e.id === input.value);
-//     renderPizza(match); 
+const match = Pizzas.find((e) => e.id === input.value);
+     renderPizza(match); 
 
 
 
