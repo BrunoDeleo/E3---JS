@@ -1,174 +1,92 @@
 const input = document.getElementById ("input");
 const btn = document.getElementById ("btn");
 const cardsContainer = document.getElementById ("cards-container");
+const h1 = document.getElementById ("nom");
+const h3 = document.getElementById ("prec");
 const Pizzas=[
     {id:1, nombre:"Muzza", ingredientes: ['muza', 'salsa tomate'],  precio: 1000, img: './img/muzza.png'},
-    {id:2, nombre:"Fugazzeta", ingredientes: ['muza', 'cebolla'], precio: 1200},
-    {id:3, nombre:"Napolitana", ingredientes: ['muza', 'salsa tomate', 'tomates'], precio: 1400},
-    {id:4, nombre:"Anchoas", ingredientes: ['salsa tomate', 'anchoas'], precio: 1100},
-    {id:5, nombre:"Morrón", ingredientes: ['muza', 'salsa tomate', 'morrones'], precio: 1400},
-    {id:6, nombre:"Palmitos", ingredientes: ['muza', 'salsa tomate', 'palmitos'], precio: 1400},
+    {id:2, nombre:"Fugazzeta", ingredientes: ['muza', 'cebolla'], precio: 1200, img: './img/champ.png'},
+    {id:3, nombre:"Napolitana", ingredientes: ['muza', 'salsa tomate', 'tomates'], precio: 1400, img: './img/tom.png'},
+    {id:4, nombre:"Anchoas", ingredientes: ['salsa tomate', 'anchoas'], precio: 1100, img: './img/ruc.png'},
+    {id:5, nombre:"Morrón", ingredientes: ['muza', 'salsa tomate', 'morrones'], precio: 1400, img: './img/muzza.png'},
+    {id:6, nombre:"Palmitos", ingredientes: ['muza', 'salsa tomate', 'palmitos'], precio: 1400, img: './img/sal.png'},
 ];
 
-//salvar y recuperar info
+////////////salvar y recuperar info
 
-let pedido = JSON.parse(localStorage.getItem('pedido')) || [];
+// let pedido = JSON.parse(localStorage.getItem('pedido')) || [];
 
 const saveLocalStorage = (e) => {
     localStorage.setItem ('pedido', JSON.stringify(e)) 
 };
 
-
-const saveData = () =>{
-    pedido = [
-        ...pedido,
-        {
-            id: '',
-            nombre: '',
-            ingredientes: '',
-            precio:'',
-            img:'',
-        }
-    ]
-}
+///////////////////renderizar
 
 
-
-
-
-
-//renderizar
 
 const renderPizza = (pizza) => {
+    const { nombre, precio } = pizza; 
+    h1.innerHTML = `Nombre:${nombre}`;
+    h3.innerHTML = `Precio:${precio}`;
+    
+  };
 
-    ` ${pizza.name}
-    `
-}
+// const renderPizza = (pizza) => {
+//     const { nombre, precio } = pizza; 
+//     return `
+//     <h4>${nombre}</h4>
+//     <h4>${precio}</h4>
+//     ` 
+//   };
 
-const renderPedido = (pedido) =>{
-    cardsContainer.innerHTML = pedido.map((pizza) => renderPizza(pizza)).join('');
+// const render2 = (e) =>{
+//     cardsContainer.innerHTML = renderPizza;
+// }
 
-}
+// const match = Pizzas.find((e) => e.id === input.value);
+//     renderPizza(match); 
 
 
 
-//
+////////////////////////////////
 
-const addPizza = (e) => {
+  const addPizza = (e) => {
     e.preventDefault();
-    if(isValidId()) {
-        saveData();
-        console.log(pedido)
-        form.reset(); //reemplazar esto dsps
+    if(isValid()) {
         saveLocalStorage();
-        renderPedido();
+        const match = Pizzas.find((e) => e.id === input.value);
+    renderPizza(match); 
     } 
 }
 
+//////////////////////////////////////
 
+//
+//boton 
 
-
-
-
-
-
-// errores
-
-// const isEmpty = (value) => value === !value.length;
-
-// const isValid = () => {
-//     const currentID = input.value;
-//     const validID = Pizzas.id;
-//     return validID == currentID;
-// }
-
-const isValid = () => {
-    const currentID = input.value;
-    if (!Pizzas.some(e => e.id === currentID)){
-        alert ('ingrese ID valido')
-        return;
-    }
-}
-
-
-
-const showError = () => {
-
-}
-
-const checkNum = () => {
-    let valid = false;
-    const NumValue = input.value.trim();
-    if(!isValid(NumValue)) {
-      showError(input, '* El telefono ingresado es invalido')
-    } else {
-      clearError(input);
-      valid = true;
-    }
-    return valid
-  }
-
-
-//boton submit
-
-const handleClick = () => {
-    console.log(input.value);
-}
-
-btn.addEventListener ('click', handleClick)
+btn.addEventListener ('click', addPizza)
 
 //
 
-const pizzaId = parseInt(input.value);
+// errores
 
-console.log (pizzaId);
-
-const resultado = Pizzas.find((pizza) => pizza.id === input.value);
-    console.log(resultado); 
-
-
-    //
-
-
-renderPedido(pedido);
-saveLocalStorage(pedido);
-// aca va ka funcion de mostrar ultima card anterior 
-
-const innit = () => {
-    renderPedido();
-    //funcion para ultima cosa ingresada
-    // form.addEventListener('submit', submitForm);
+const isValid = () => {
+    const currentID = input.value;
+    if (!Pizzas.some(e => e.id == currentID)){
+        alert ('ingrese un ID del 1 al 6')
+        // cambiar por input error en small
+        return false;
+    } else {
+        return true;
+    }
 }
 
+/////
 
 
 
+// const init = () => {
+//     //renderizar ultima carta;
+// }
 
-// Pizzas.forEach( (e) =>{
-//     console.log (`La pizza número ${e.id} se llama ${e.nombre}`);
-//     return;
-//     }
-// );
-
-
-// Pizzas.forEach( (e) =>{
-//      e.id == pizzaId? console.log (`La pizza número ${e.id} se llama ${e.nombre}`) : console.log (`error`);
-//      }
-//  );
-
- 
-
-// Pizzas.forEach( (e) =>{
-//     if ((e.id) == input.valueAsNumber) {
-//         console.log (`La pizza número ${e.id} se llama ${e.nombre}`)};
-//     else (console.log (`error`));
-//     }
-// );
-
-
-
-
-
-// '${input(value)}'
-
-// .valueAsNumber
+// init();
